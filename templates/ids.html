@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=windows-1252">
+    <link rel="stylesheet" href="styles.css">
+    <title></title>
+  </head>
+  <body>
+    <div class="sequoia-logo"><a href="http://sequoiaproject.org"><img
+src="http://sequoiaproject.org/wp-content/uploads/2017/08/sequoia-logo-rsna.jpg"
+          height="53" width="111"></a></div>
+    <div class="rsna-logo"><a href="http://sequoiaproject.org/rsna"><img
+src="http://sequoiaproject.org/wp-content/uploads/2017/08/rsna-logo.png"
+          height="25" width="200"></a></div>
+    <h1>Test Cases for Imaging Document Source (2018)</h1>
+    <h2>Overview</h2>
+    <p>This document describes testing requirements for the Imaging
+      Document Source actor in the IHE XDS-I.b integration profile. The
+      Imaging Document Source will perform tests using the XDS Toolkit
+      software from NIST and also ATNA security tests using the Gazelle
+      software. The test procedure includes:<br>
+    </p>
+    <ul>
+      <li>Execute all tests listed at the bottom of this page without
+        TLS</li>
+      <li>Repeat all tests listed at the bottom with TLS enabled</li>
+      <li>Execute the following No Peer tests that appear in Gazelle for
+        your system</li>
+      <ul>
+        <li>ATNA_Questionnaire</li>
+        <li>ATNA_Audit_Msg_Check</li>
+        <li>ATNA_Authenticate_with_Tool<br>
+        </li>
+      </ul>
+    </ul>
+    <h2>General Instructions</h2>
+    <p>Certain toolkit management functions are password protected and
+      must be performed by the test administrator. Please follow these
+      general instructions. </p>
+    <table border="2">
+      <tbody>
+        <tr>
+          <th>Party</th>
+          <th>Type</th>
+          <th>Step</th>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Test Data</td>
+          <td>The Imaging Document Source tests use a specific set of
+            DICOM images. You will need to import these into your system
+            and use the correct images specified for each test. These
+            images specified in <a
+              href="testdoc/ids/ids_2018-4800.html">ids/ids_2018-4800.html</a>.<br>
+          </td>
+        </tr>
+        <tr>
+          <td>All</td>
+          <td>Configuration</td>
+          <td>The test cases require that the Imaging Document Source
+            under test use specific values for patient identifiers,
+            patient identifier assigning authority and
+            repositoryUniqueID. These values is documented in <a
+              href="testdoc/ids/ids_2018-4800.html">ids/ids_2018-4800.html</a>
+            and also within the toolkit when you run the tests.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Configuration</td>
+          <td>Your Imaging Document Source will need to communicate with
+            a Document Repository simulator. The detailed instructions
+            below will tell you how to obtain the configuration
+            information for the simulator.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Configuration</td>
+          <td>Provide test administrator with configuration parameters
+            for your Imaging Document Source.</td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td>Configuration</td>
+          <td>
+            <ul>
+              <li>Create a SYSTEM within the XDS Toolkit that uses the
+                supplied configuration parameters.</li>
+              <li>In this system, include only the Imaging Document
+                Source configuration. Do not double up with other
+                actors.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td>Configuration</td>
+          <td>Create a testing SESSION for this Imaging Document Source.
+            The system under test should use only this SESSION and no
+            others.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Instruction</td>
+          <td>Use only the testing ENVIRONMENT and testing SESSION
+            assigned by the administrator when testing your Imaging
+            Document Source. Do not test other actors using this testing
+            SESSION.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Instruction</td>
+          <td>It is expected that the user will execute the tests and
+            the administrator will review results when the tests are
+            complete. The user may execute individual or all tests
+            multiple times. Each time you execute a test, the toolkit
+            will overwrite the previous results in the test SESSION for
+            that test.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Detailed Instructions</h2>
+    <ol>
+      <li>In the web user interface, make sure you have selected the
+        proper testing ENVIRONMENT and proper testing SESSION.</li>
+      <li>In the lower left flap of the toolkit, select Conformance
+        Tests.</li>
+      <li>Activate the teal/green Test Context control (right side of
+        conformance tests). Select your SYSTEM as the system under test.</li>
+      <li>Select the Imaging Document Source tab.</li>
+      <li>Check the Reset box and activate the button: Initialize
+        Testing Environment. This will create a set of simulators and
+        load test patients into that environment.</li>
+      <li>Wait for the environment initialization steps to complete. You
+        should see initilization steps under the heading Supporting
+        Environment Configuration turn green.</li>
+      <li>The display will show you the configuration parameters for the
+        simulators. Use that data to configure your Imaging Document
+        Source. <em>Please note that you can initialize the environment
+          any number of times. The simulators will always be created
+          with the same endpoints. You will not have to reconfigure your
+          Imaging Document Source if you decide to initialize the
+          testing environment again.</em></li>
+      <li>Now you can run all tests (one button for the Imaging Document
+        Source - Required Tests, or you can run individual tests. The
+        trashcan icon clears the log/test results.</li>
+      <li>As stated above, you can run the test cases and review the
+        results on your own schedule. Contact the administrator with
+        questions or to verify results.</li>
+    </ol>
+    <h2>Test Documentation</h2>
+    <p>Instructions for individual tests are stored in the toolkit. The
+      links below provide static copies of the documentation that do not
+      rely on toolkit access.</p>
+    <h2>REPLACE</h2>
+    <div class="footer">Copyright© 2017-2018 The Sequoia Project. All
+      rights reserved. <a
+        href="http://sequoiaproject.org/privacy-policy/">Privacy Policy</a></div>
+  </body>
+</html>

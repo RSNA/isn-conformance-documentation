@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=windows-1252">
+    <link rel="stylesheet" href="styles.css">
+    <title></title>
+  </head>
+  <body>
+    <div class="sequoia-logo"><a href="http://sequoiaproject.org"><img
+src="http://sequoiaproject.org/wp-content/uploads/2017/08/sequoia-logo-rsna.jpg"
+          height="53" width="111"></a></div>
+    <div class="rsna-logo"><a href="http://sequoiaproject.org/rsna"><img
+src="http://sequoiaproject.org/wp-content/uploads/2017/08/rsna-logo.png"
+          height="25" width="200"></a></div>
+    <h1>Test Cases for Imaging Document Consumer (2018)</h1>
+    <h2>Overview</h2>
+    <p>This document describes testing requirements for the Imaging
+      Document Consumer actor in the IHE XDS-I.b integration profile.
+      The
+      Imaging Document Consumer will perform tests using the XDS Toolkit
+      software from NIST and also ATNA security tests using the Gazelle
+      software. The test procedure includes:<br>
+    </p>
+    <ul>
+      <li>Execute all tests listed at the bottom of this page without
+        TLS</li>
+      <li>Repeat all tests listed at the bottom with TLS enabled</li>
+      <li>Execute the following No Peer tests that appear in Gazelle for
+        your system</li>
+      <ul>
+        <li>ATNA_Questionnaire</li>
+        <li>ATNA_Audit_Msg_Check</li>
+        <li>ATNA_Authenticate_with_Tool<br>
+        </li>
+      </ul>
+    </ul>
+    <p> The tests for an Imaging Document Source use a fixed set of
+      images as input data. The test data has departmental patient
+      identifiers in the DICOM files (e.g., those used in the Radiology
+      Department when the images are acquired) and identifiers for the
+      test Affinity Domain. There is no assigning authority for the
+      departmental identifiers. The assigning authority for the Affinity
+      Domain is: </p>
+    <ul>
+      <li>&amp;1.3.6.1.4.1.21367.2005.13.20.1000&amp;ISO</li>
+    </ul>
+    <p>The Imaging Document Consumer tests assume a standard testing
+      procedure: </p>
+    <ol>
+      <li>A standard test set is created that contains imaging data and
+        associated KOS objects. The standard test images are identified
+        by patient identifier and are listed with each test as
+        appropriate.</li>
+      <li>The test software does not provide a mapping mechanism between
+        the patient identifier in the image and the patient identifier
+        in the Affinity Domain. It is the responsibility of the Imaging
+        Document Consumer to use the correct patient identifier for the
+        Affinity Domain.</li>
+      <li>The Imaging Document Consumer is instructed to send query and
+        retrieve requests to the testing system. The logging mechanism
+        of the simulators in the testing system records the requests.
+        The testing system supports retrieves using the RAD-55 (WADO)
+        and RAD-69 (SOAP) transactions. Traditional DICOM C-Move
+        transactions are not supported. The Imaging Document Consumer
+        under test needs to complete all tests using RAD-55 transactions
+        or all tests using RAD-69 transactions. The Imaging Document
+        Consumer may test both RAD-55 and RAD-69 transactions if both
+        are supported.</li>
+      <li>The test manager reviews the Imaging Document Consumer
+        requests captured by the test system simulators.</li>
+    </ol>
+    <h2>General Instructions</h2>
+    <p>Certain toolkit management functions are password protected and
+      must be performed by the test administrator. Please follow these
+      general instructions. </p>
+    <table border="2">
+      <tbody>
+        <tr>
+          <th>Party</th>
+          <th>Type</th>
+          <th>Step</th>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Configuration</td>
+          <td>Your Imaging Document Consumer will need to communicate
+            with a set of simulators. The detailed instructions below
+            will tell you how to obtain the configuration information
+            for the simulators.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Configuration</td>
+          <td>Provide test administrator with configuration parameters
+            for your Imaging Document Consumer.</td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td>Configuration</td>
+          <td>
+            <ul>
+              <li>Create a SYSTEM within the XDS Toolkit that uses the
+                supplied configuration parameters.</li>
+              <li>In this system, include only the Imaging Document
+                Consumer configuration. Do not double up with other
+                actors.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td>Configuration</td>
+          <td>Create a testing SESSION for this Imaging Document
+            Consumer. The system under test should use only this SESSION
+            and no others.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Instruction</td>
+          <td>Use only the testing ENVIRONMENT and testing SESSION
+            assigned by the administrator when testing your Imaging
+            Document Consumer. Do not test other actors using this
+            testing SESSION.</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>Instruction</td>
+          <td>It is expected that the user will execute the tests and
+            the administrator will review results when the tests are
+            complete. The user may execute individual or all tests
+            multiple times. Each time you execute a test, the toolkit
+            will overwrite the previous results in the test SESSION for
+            that test.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Detailed Instructions</h2>
+    <ol>
+      <li>In the web user interface, make sure you have selected the
+        proper testing ENVIRONMENT and proper testing SESSION.</li>
+      <li>In the lower left flap of the toolkit, select Conformance
+        Tests.</li>
+      <li>Activate the teal/green Test Context control (right side of
+        conformance tests). Select your SYSTEM as the system under test.</li>
+      <li>Select the Imaging Document Consumer tab.</li>
+      <li>Check the Reset box and activate the button: Initialize
+        Testing Environment. This will create a set of simulators and
+        load test patients into those simulators.</li>
+      <li>Wait for the environment initialization steps to complete. You
+        should see initilization steps under the heading Supporting
+        Environment Configuration turn green.</li>
+      <li>The display will show you the configuration parameters for the
+        simulator. Use that data to configure your Imaging Document
+        Consumer. <em>Please note that you can initialize the
+          environment any number of times. The simulators will always be
+          created with the same endpoints. You will not have to
+          reconfigure your Imaging Document Consumer if you decide to
+          initialize the testing environment again.</em></li>
+      <li>Imaging Document Consumer tests are not automated. They
+        require your system to initiate transactions. You will initiate
+        the transactions for each test, and the administrator will
+        review query and retrieve requests captured by the testing
+        system. The trashcan icon clears the log/test results.</li>
+      <li>As stated above, you can run the test cases and review the
+        results on your own schedule. Contact the administrator with
+        questions or to verify results.</li>
+    </ol>
+    <h2>Test Documentation</h2>
+    <p>Instructions for individual tests are stored in the toolkit. The
+      links below provide static copies of the documentation that do not
+      rely on toolkit access.</p>
+    <h2>REPLACE</h2>
+    <div class="footer">Copyright© 2017-2018 The Sequoia Project. All
+      rights reserved. <a
+        href="http://sequoiaproject.org/privacy-policy/">Privacy Policy</a></div>
+  </body>
+</html>
